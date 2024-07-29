@@ -12,6 +12,12 @@ import SwiftUI
 
 public struct MYNameIndicator: View {
     
+    public init(text: String = "Loading", animateTimeInterval: Double, unstopable: Bool) {
+        self.text = text
+        self.animateTimeInterval = animateTimeInterval
+        self.unstopable = unstopable
+    }
+    
     let allFonts:[String] = ["Al Nile",
                              "Bodoni Ornaments",
                              "Savoye LET",
@@ -22,7 +28,7 @@ public struct MYNameIndicator: View {
                              "Chalkduster",
                              "Academy Engraved LET"]
     
-    @State public var text = "Loading"
+    var text = "Loading"
 
     public var animateTimeInterval: Double = 0.3
     public var unstopable: Bool = true
@@ -35,7 +41,7 @@ public struct MYNameIndicator: View {
    public var body: some View {
                     
        Text(text)
-           .font(.custom(fontName, size: 40))
+           .font(.custom(fontName, size: 20))
         .onAppear {
             timer = Timer.scheduledTimer(withTimeInterval: animateTimeInterval, repeats: true) { _ in
                 fontIndex = (fontIndex + 1) % allFonts.count
